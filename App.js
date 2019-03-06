@@ -7,10 +7,7 @@ import {
   View
 } from 'react-native';
 import jokenpo from './img/jokenpo.png';
-import pedra from './img/pedra.png';
-import papel from './img/papel.png';
-import tesoura from './img/tesoura.png';
-import { bold } from 'ansi-colors';
+import Icone from './src/components/icone';
 
 export default class App extends Component{
 
@@ -26,7 +23,7 @@ export default class App extends Component{
 
   computerNumber() {
     //gera número aleatório ( 0, 1, 2)
-    var numAleatorio = Math.floor(Math.random() * 3);
+    let numAleatorio = Math.floor(Math.random() * 3);
     
     switch(numAleatorio){
       case 0: return 'pedra';
@@ -38,7 +35,7 @@ export default class App extends Component{
   jokenpo(escolhaUsuario){
     
     let escolhaComputador = this.computerNumber();
-    var resultado = '';
+    let resultado = '';
 
     if(escolhaComputador == 'pedra'){
       if(escolhaUsuario == 'pedra'){
@@ -120,33 +117,6 @@ export default class App extends Component{
   }
 }
 
-class Icone extends Component {
-  render() {
-    const { escolha, jogador } = this.props;
-    return (
-      <View style={styles.containerResult}>
-        {
-          escolha != '' &&
-            <Text style={styles.textWinner}>{jogador}</Text>
-        }
-        {
-          escolha == 'tesoura' && 
-            <Image source={require('./img/tesoura.png')} />
-        }
-        {
-          escolha == 'pedra' &&
-            <Image source={require('./img/pedra.png')} />
-        }
-        {
-          escolha == 'papel' &&
-            <Image source={require('./img/papel.png')} />
-        }
-      
-      </View>
-    );
-  }
-}
-
 const styles = StyleSheet.create({
   image: {
     width: 'auto'
@@ -166,15 +136,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'red',
     height: 60
-  },
-  textWinner: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginTop: 20
-  },
-  containerResult: {
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   info: {
     fontSize: 22,
